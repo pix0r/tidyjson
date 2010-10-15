@@ -25,13 +25,13 @@ class TidyJSON {
 					if ($c == '{' || $c == '[') {
 						$eol = true;
 						$level++;
-					}
-					if ($c == '}' || $c == ']') {
+					} elseif ($c == '}' || $c == ']') {
 						$level--;
 						$out .= "\n" . self::indent($level, $config);
-					}
-					if ($c == ',') {
+					} elseif ($c == ',') {
 						$eol = true;
+					} elseif ($c == ':') {
+						$c .= $config['space'];
 					}
 				}
 			} else {
