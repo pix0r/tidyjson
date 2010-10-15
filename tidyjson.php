@@ -45,6 +45,12 @@ class TidyJSON {
 				$out .= "\n" . self::indent($level, $config);
 			}
 		}
+
+		// Remove trailing whitespace
+		while (in_array(substr($out, -1), self::$white_chars)) {
+			$out = substr($out, 0, -1);
+		}
+
 		return $out;
 	}
 
