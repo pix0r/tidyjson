@@ -54,11 +54,6 @@ class TidyJSON {
 		return $out;
 	}
 
-	protected static function do_tidy($json) {
-		$out = '';
-		$level = 0;
-	}
-
 	protected static function get_config($config = null) {
 		return is_array($config) ? array_merge(self::$default_config, $config) : self::$default_config;
 	}
