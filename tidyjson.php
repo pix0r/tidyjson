@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * TidyJSON
+ *
+ * A simple class for cleaning up poorly formatted JSON strings. No validation
+ * is performed; if you pass in bogus data, you will get bogus output.
+ */
+
 class TidyJSON {
 	protected static $default_config = array(
 		'indent'		=>	'  ',
@@ -9,6 +16,11 @@ class TidyJSON {
 	protected static $string_chars = array('"', "'");
 	protected static $white_chars = array(" ", "\t", "\n", "\r");
 
+	/**
+	 * tidy
+	 * @param string $json JSON-formatted string you'd like to tidy
+	 * @param array $config Optional configuration values
+	 */
 	public static function tidy($json, $config = null) {
 		$config = self::get_config($config);
 		$out = '';
