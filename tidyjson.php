@@ -14,6 +14,7 @@ class TidyJSON {
 	);
 
 	protected static $string_chars = array('"', "'");
+	protected static $esc_string_chars = array("\\\"", "\\'");
 	protected static $white_chars = array(" ", "\t", "\n", "\r");
 
 	/**
@@ -26,7 +27,9 @@ class TidyJSON {
 		$out = '';
 		$level = 0;
 		$strchr = null;
+		$c = null;
 		for ($x = 0; $x < strlen($json); $x++) {
+			$lc = $c;
 			$c = substr($json, $x, 1);
 			if ($strchr === null) {
 				if (in_array($c, self::$white_chars))
@@ -47,7 +50,7 @@ class TidyJSON {
 					}
 				}
 			} else {
-				if ($c === $strchr) {
+				if ($c === $strchr && !in_array($lc.$c, self::$esc_string_chars))) {
 					$strchr = null;
 				}
 			}
