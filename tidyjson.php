@@ -50,7 +50,7 @@ class TidyJSON {
 					}
 				}
 			} else {
-				if ($c === $strchr && !in_array($lc.$c, self::$esc_string_chars))) {
+				if ($c === $strchr && !in_array($lc.$c, self::$esc_string_chars)) {
 					$strchr = null;
 				}
 			}
