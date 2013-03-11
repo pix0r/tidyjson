@@ -16,6 +16,8 @@ class TidyJSON {
 	protected static $string_chars = array('"', "'");
 	protected static $esc_string_chars = array("\\\"", "\\'");
 	protected static $white_chars = array(" ", "\t", "\n", "\r");
+	protected static $newline_chars = array("\r", "\n");
+	protected static $esc_newline_chars = array('', '\\n');
 
 	/**
 	 * tidy
@@ -52,6 +54,9 @@ class TidyJSON {
 			} else {
 				if ($c === $strchr && !in_array($lc.$c, self::$esc_string_chars)) {
 					$strchr = null;
+				}
+				if(in_array($c, self::$newline_chars)) {
+					$c = str_replace(self::$newline_chars, self::$esc_newline_chars, $c);
 				}
 			}
 			$out .= $c;
